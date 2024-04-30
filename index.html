@@ -5,6 +5,11 @@
         <title>Shopping List Example</title>
         
         <style>
+            div button {
+                color: white;
+                background: green;
+            }
+
             li {
               margin-bottom: 10px;
             }
@@ -12,13 +17,12 @@
             li button {
               font-size: 12px;
               margin-left: 20px;
-              color: #666;
+              color: white;
+              background-color: red;
             }
           </style>
-
     </head>
     <body>
-
         <h1>My Shopping List</h1>
         
         <div>
@@ -28,17 +32,41 @@
         </div>
 
         <ul> 
-            <!-- <li>Raw Eggs <button>Delete</button></li>
-            <li>Un-Pasteurized Raw Milk <button>Delete</button></li>
-            <li>Organic Bread <button>Delete</button></li>
-            <li>Organic Humous <button>Delete</button></li> -->
+
         </ul>
 
         <script>
-            
+            const input = document.querySelector('input');
+            const inputBtn = document.querySelector('button')
+            const list = document.querySelector('ul');
+
+            inputBtn.addEventListener('click', addItem);
+
+            function addItem(){
+                let item = input.value;
+                input.value = '';
 
 
+                const itemOfList = document.createElement('li')
+                const itemText = document.createElement('span') 
+                const itemDeleteBtn = document.createElement('button')
+
+                list.appendChild(itemOfList);
+                itemOfList.appendChild(itemText);
+                itemOfList.appendChild(itemDeleteBtn);
+
+                itemText.textContent = item;
+                itemDeleteBtn.textContent = 'Delete'
+
+
+                itemDeleteBtn.addEventListener('click', removeItem)
+
+                function removeItem() {
+                    itemOfList.remove();
+                } 
+
+                input.focus()
+            }
         </script>
-
     </body>
 </html>
